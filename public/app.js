@@ -5,6 +5,10 @@
   const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const DAY_ORDER = [1, 2, 3, 4, 5, 6, 0]; // week starts Monday
   const DURATIONS = [15, 20, 30, 45, 60, 90, 120];
+  if (location.protocol === 'file:') {
+    app.innerHTML = '<div class="card"><h1>Start the server first</h1><p>This app needs its server. In the project folder run <code>npm install</code> then <code>npm start</code>, and open <a href="http://localhost:3000">http://localhost:3000</a> in your browser.</p></div>';
+    return;
+  }
   const state = { user: null, professions: [], filters: { q: '', city: '', profession: '' }, returnTo: null };
 
   /* ---------- helpers ---------- */
@@ -281,8 +285,8 @@
         <button class="${bookingTab === 'past' ? 'on' : ''}" data-tab="past">History (${past.length})</button></div>
       ${shown.length ? shown.map((b) => bookingCard(b, role)).join('') : `<div class="empty">${bookingTab === 'upcoming' ? 'Nothing scheduled.' : 'No past appointments.'}${role === 'client' && bookingTab === 'upcoming' ? ' <a href="#/find">Find a professional</a>' : ''}</div>`}`;
   }
-  const clientBookings = () => renderBookings('client', 'My appointments');
-  const proBookings = () => renderBookings('professional', 'Appointments');
+  function clientBookings() { return renderBookings('client', 'My appointments'); }
+  function proBookings() { return renderBookings('professional', 'Appointments'); }
 
   /* ---------- professional profile & hours ---------- */
   async function proProfile() {
