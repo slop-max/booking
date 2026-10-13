@@ -1,0 +1,21 @@
+{
+  "name": "booking-app",
+  "version": "1.0.0",
+  "description": "Appointment booking with logins, roles and professions",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js",
+    "test": "node test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.3.0",
+    "express-session": "^1.19.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}
